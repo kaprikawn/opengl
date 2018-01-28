@@ -1,6 +1,6 @@
 /*This source code copyrighted by Lazy Foo' Productions (2004-2013)
-and may not be redistributed without written permission.*/
-//Version: 002
+and may not be redestributed without written permission.*/
+//Version: 005
 
 #include "LUtil.h"
 
@@ -34,8 +34,12 @@ int main( int argc, char* args[] )
         return 1;
     }
 
-    //Set keyboard handler
-    glutKeyboardFunc( handleKeys );
+    //Load media
+    if( !loadMedia() )
+    {
+        printf( "Unable to load media!\n" );
+        return 2;
+    }
 
     //Set rendering function
     glutDisplayFunc( render );
