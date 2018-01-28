@@ -1,6 +1,6 @@
 /*This source code copyrighted by Lazy Foo' Productions (2004-2013)
 and may not be redistributed without written permission.*/
-//Version: 001
+//Version: 002
 
 #include "LUtil.h"
 
@@ -16,34 +16,37 @@ Side Effects:
 
 int main( int argc, char* args[] )
 {
-	//Initialize FreeGLUT
-	glutInit( &argc, args );
+    //Initialize FreeGLUT
+    glutInit( &argc, args );
 
-	//Create OpenGL 2.1 context
-	glutInitContextVersion( 2, 1 );
+    //Create OpenGL 2.1 context
+    glutInitContextVersion( 2, 1 );
 
-	//Create Double Buffered Window
-	glutInitDisplayMode( GLUT_DOUBLE );
-	glutInitWindowSize( SCREEN_WIDTH, SCREEN_HEIGHT );
-	glutCreateWindow( "OpenGL" );
+    //Create Double Buffered Window
+    glutInitDisplayMode( GLUT_DOUBLE );
+    glutInitWindowSize( SCREEN_WIDTH, SCREEN_HEIGHT );
+    glutCreateWindow( "OpenGL" );
 
-	//Do post window/context creation initialization
-	if( !initGL() )
-	{
-		printf( "Unable to initialize graphics library!\n" );
-		return 1;
-	}
+    //Do post window/context creation initialization
+    if( !initGL() )
+    {
+        printf( "Unable to initialize graphics library!\n" );
+        return 1;
+    }
 
-	//Set rendering function
-	glutDisplayFunc( render );
+    //Set keyboard handler
+    glutKeyboardFunc( handleKeys );
 
-	//Set main loop
-	glutTimerFunc( 1000 / SCREEN_FPS, runMainLoop, 0 );
+    //Set rendering function
+    glutDisplayFunc( render );
 
-	//Start GLUT main loop
-	glutMainLoop();
+    //Set main loop
+    glutTimerFunc( 1000 / SCREEN_FPS, runMainLoop, 0 );
 
-	return 0;
+    //Start GLUT main loop
+    glutMainLoop();
+
+    return 0;
 }
 
 void runMainLoop( int val )
